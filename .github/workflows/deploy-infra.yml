@@ -1,10 +1,10 @@
 name: Infrastructure Deploy
-
 on:
   push:
     paths:
-      - 'infra/**' # Запуск тільки при змінах в інфраструктурі
+      - 'infra/**'
     branches: [ main ]
+  workflow_dispatch: # Дозволяє запускати вручну кнопкою
 
 jobs:
   terraform-apply:
