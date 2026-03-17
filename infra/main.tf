@@ -40,7 +40,7 @@ resource "docker_container" "postgres" {
   networks_advanced { name = docker_network.app_net.name }
   env = [
     "POSTGRES_USER=admin",
-    "POSTGRES_PASSWORD=secret",
+    "POSTGRES_PASSWORD=pass",
     "POSTGRES_DB=realestate"
   ]
   ports {
