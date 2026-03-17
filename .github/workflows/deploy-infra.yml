@@ -1,0 +1,30 @@
+name: Infrastructure Deploy
+
+on:
+  push:
+    paths:
+      - 'infra/**' # Запуск тільки при змінах в інфраструктурі
+    branches: [ main ]
+
+jobs:
+  terraform-apply:
+    runs-on: self-hosted # ВАЖЛИВО: виконується на твоєму Celeron
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: Terraform Init
+        run: |
+          cd infra
+          terraform init
+
+      - name: Terraform Apply
+        run: |
+          cd infra
+          # -auto-approve дозволяє не вводити "yes" вручну
+          terraform apply -auto-approve
