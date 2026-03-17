@@ -20,7 +20,7 @@ resource "docker_container" "redpanda" {
   name  = "redpanda"
   image = "docker.redpanda.com/redpandadata/redpanda:v23.2.1"
   networks_advanced { name = docker_network.app_net.name }
-  # Обмежуємо ресурси для Celeron
+  # Обмежуємо ресурси для server
   command = [
     "redpanda", "start", "--overprovisioned",
     "--smp 1", "--memory 512M", "--check=false",
